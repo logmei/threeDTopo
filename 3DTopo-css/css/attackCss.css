@@ -1,0 +1,47 @@
+/**************心形***************/
+@keyframes heart2D{
+    from,to{transform:none}
+    30%{transform:scale(1.4)}
+}
+.heart-shape{
+    position: relative;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(255, 45, 33);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+
+}
+.heart-shape:before,
+.heart-shape:after{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgb(255, 45, 33);
+
+}
+.heart-shape:before{
+    bottombottom: 0px;
+    left: -8px;
+}
+.heart-shape:after{
+    top: -8px;
+    rightright: 0px;
+}
+.attackHeart{
+    top: 319px;
+    left: 171px;
+    position: absolute;
+
+}
+.heartClass{
+    animation:heart2D 1.2s ease-in infinite ;
+}

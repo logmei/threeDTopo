@@ -1,0 +1,720 @@
+
+@keyframes spin{
+    0%{transform:translateZ(0px) rotateZ(0deg) }
+    100%{transform:translateZ(0px) rotateZ(360deg)}
+}
+
+@keyframes heart{
+    0%{transform: scale3d(0.85,0.85,0.85)}
+    30%{transform: scale3d(1.1,1.1,1.1)}
+    100%{transform: scale3d(0.85,0.85,0.85)}
+}
+.heartAnimation{
+   animation:heart 1.5s ease-in infinite ;
+}
+.wai{
+    height: 100%;
+    width: 100%;
+    overflow:auto;
+    
+    background: -webkit-linear-gradient(-45deg, rgba(18,28,33,.9), rgba(0,0,0,.7), rgba(18,28,33,.9));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=rgba(18,28,33,.9), endColorstr=rgba(18,28,33,.9));/*IE<9>*/ 
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";/*IE8+*/
+    background: -moz-linear-gradient(-45deg, rgba(18,28,33,.9), rgba(0,0,0,.7), rgba(18,28,33,.9)); 
+    background: -webkit-gradient(linear,0 100%, 100% 0%, from(rgba(18,28,33,.9)), color-stop(0.8, rgba(0,0,0,.7)), to(rgba(18,28,33,.9))); 
+    background: -o-linear-gradient(-45deg, rgba(18,28,33,.9), rgba(0,0,0,.7), rgba(18,28,33,.9)); 
+    /* background: url(images/dian.png) left top,url(images/dian.png) right top,url(images/dian.png) left bottom,url(images/dian.png) right bottom;
+    background-repeat: no-repeat; */
+}
+.stage{
+    width: 100%;
+    height: 1500px;
+    position: relative;
+    perspective:3000px;
+}
+
+.side{
+    text-align: center;
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+}
+
+.switchClass{
+    border: 1px solid #6AA9E6;
+}
+
+.switchClass .back{
+    border: 1px solid #6AA9E6;
+    background: #6AA9E6;
+}
+
+.firewallClass{
+    border: 2px solid #EBC56D;
+}
+
+.routingSwitchClass{
+    border: 2px solid #0955A9;
+}
+
+.routingSwitchClass .back{
+    background: #4EA4E6;
+}
+.container{
+    position: absolute;
+    transform:translateZ(9px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform:translateZ(9px) rotateX(0deg) rotateY(0deg);
+    -moz-transform:translateZ(9px) rotateX(0deg) rotateY(0deg);
+    -o-transform:translateZ(9px) rotateX(0deg) rotateY(0deg);
+    -ms-transform:translateZ(9px) rotateX(0deg) rotateY(0deg);
+
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+}
+
+.front{
+    transform:translateZ(7px);
+    -webkit-transform:translateZ(7px);
+    -moz-transform:translateZ(7px);
+    -o-transform:translateZ(7px);
+    -ms-transform:translateZ(7px);
+    width: 52px;
+    height: 30px;
+}
+
+.back{
+    transform:rotateX(180deg) translateZ(7px);
+    -webkit-transform:rotateX(180deg) translateZ(7px);
+    -weblittransform:rotateX(180deg) translateZ(7px);
+    transform:rotateX(180deg) translateZ(7px);
+    transform:rotateX(180deg) translateZ(7px);
+    width: 52px;
+    height: 30px;
+
+}
+
+.left{
+    transform:rotateY(90deg) translateZ(44px);
+    -webkit-transform:rotateY(90deg) translateZ(44px);
+    -moz-transform:rotateY(90deg) translateZ(44px);
+    -o-transform:rotateY(90deg) translateZ(44px);
+    -ms-transform:rotateY(90deg) translateZ(44px);
+    width: 15px;
+    height: 30px;
+
+}
+
+
+.right{
+    transform:rotateY(-90deg) translateZ(8px);
+    -webkit-transform:rotateY(-90deg) translateZ(8px);
+    -moz-transform:rotateY(-90deg) translateZ(8px);
+    -o-transform:rotateY(-90deg) translateZ(8px);
+    -ms-transform:rotateY(-90deg) translateZ(8px);
+    width: 15px;
+    height: 30px;
+
+}
+
+
+.top{
+    transform:rotateX(90deg) translateZ(8px);
+    -webkit-transform:rotateX(90deg) translateZ(8px);
+    -moz-transform:rotateX(90deg) translateZ(8px);
+    -o-transform:rotateX(90deg) translateZ(8px);
+    -ms-transform:rotateX(90deg) translateZ(8px);
+    width: 52px;
+    height: 15px;
+
+}
+.bottom{
+    transform:rotateX(-90deg) translateZ(22px);
+    -webkit-transform:rotateX(-90deg) translateZ(22px);
+    -moz-transform:rotateX(-90deg) translateZ(22px);
+    -o-transform:rotateX(-90deg) translateZ(22px);
+    -ms-transform:rotateX(-90deg) translateZ(22px);
+    width: 52px;
+    height: 15px;
+
+}
+
+.cirfront{
+    transform:translateZ(8px);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #4EA4E6;
+}
+.cirfront img{
+    width: 30px;
+    height: 30px;
+}
+.cirback img{
+    width: 30px;
+    height: 30px;
+
+}
+
+.cirback{
+    transform:rotateX(180deg)  translateZ(8px);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #097CE6;
+}
+
+.cirleft{
+    transform:rotateY(90deg) translateZ(8px);
+    width: 15px;
+    height: 30px;
+    background: #4EA4E6;
+    transform-origin:50% 100%;
+}
+.cirright{
+    transform:rotateX(-90deg) translateZ(8px);
+    width: 30px;
+    height: 15px;
+    background: #4EA4E6;
+    transform-origin:100% 50%;
+}
+
+
+
+.tip{
+    top:40px;
+    left:40px;
+    transform:rotateX(90deg) translateZ(0px) translateY(-15px);
+
+    border-top:0px;
+    border-bottom:0px ;
+    border-left: 0px;
+    border-right: 0px;
+
+    border-radius: 3px;
+    background: rgba(0,0,0,.2);
+    transform-origin:50% 100%;
+    color:rgba(255,255,255,.9);
+    opacity: 0;
+}
+
+
+
+.stageBottom{
+    width: 0;
+    height: 0;
+    background-color:rgba(222,245,255,0.15);
+    position: absolute;
+    border-radius: 15px;
+    transform:rotateX(0deg);
+    -webkit-transform: rotateX(0deg) ;
+    -moz-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg) ;
+
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+
+    -webkit-transform-origin:50% 50%;
+    -moz_transform-origin:50% 50%;
+    -o-transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%;
+    transform-origin:50% 50%;
+
+
+
+}
+
+.stageAll{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    -webkit-transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    -moz-transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    -o-transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    -ms-transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+    perspective:3000px;
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+
+    transform-origin:50% 50%;
+    -webkit-transform-origin:50% 50%;
+    -moz-transform-origin:50% 50%;
+    -o-transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%;
+
+
+}
+.animationClass{
+    animation:spin 120s linear infinite;
+}
+.lineClass{
+    position:absolute;
+    visibility:visible;
+    border-left:2px solid #1A7EFF;
+    border-top:2px solid #1A7EFF;
+    transform-origin:0% 0%;
+    -webkit-transform-origin:0% 0%;
+    -moz-transform-origin:0% 0%;
+    -o-transform-origin:0% 0%;
+    -ms-transform-origin:0% 0%;
+    width: 100px;
+}
+
+
+/*****************DDos 攻击线条 start*******************/
+.lineClassDDos{
+    position:absolute;
+    visibility:visible;
+    width: 0%;
+    height:5px;
+    /*border-left:2px solid #fb3848;*/
+    /*border-top:2px solid #fb3848;*/
+    transform-origin:0% 0%;
+    -webkit-transform-origin:0% 0%;
+    -moz-transform-origin:0% 0%;
+    -o-transform-origin:0% 0%;
+    -ms-transform-origin:0% 0%;
+
+    opacity: 1;
+    border: 1px solid;
+    border-radius: 2px 0 0 2px;
+    background-size: 100px 30px, 130px 30px, 130px 30px;
+    background-position: -20% center, right center, left center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    -webkit-transition: opacity 0.2s ease, width 0.8s ease-out, background-color 1s ease, border-color 0.3s ease, box-shadow 1s ease;
+    transition: opacity 0.2s ease, width 0.8s ease-out, background-color 1s ease, border-color 0.3s ease, box-shadow 1s ease;
+    -webkit-animation: pulse 2s ease-out infinite;
+    animation: pulse 2s ease-out infinite;
+    background-color: rgba(201, 4, 20, 0.95);
+    background-image: -webkit-linear-gradient(0deg, rgba(255, 174, 2, 0) 10%, rgba(255, 183, 28, 0.8) 30%, #ffbf36 70%, rgba(255, 183, 28, 0.8) 80%, rgba(255, 174, 2, 0) 90%), -webkit-linear-gradient(left, rgba(255, 191, 54, 0) 0%, #ffbf36 100%), -webkit-linear-gradient(right, rgba(255, 191, 54, 0) 0%, #ffbf36 100%);
+    background-image: linear-gradient(90deg, rgba(255, 174, 2, 0) 10%, rgba(255, 183, 28, 0.8) 30%, #ffbf36 70%, rgba(255, 183, 28, 0.8) 80%, rgba(255, 174, 2, 0) 90%), linear-gradient(to right, rgba(255, 191, 54, 0) 0%, #ffbf36 100%), linear-gradient(to left, rgba(255, 191, 54, 0) 0%, #ffbf36 100%);
+    border-color: #fb3848;
+    /*box-shadow: 0 0 0.6em #fa061a inset, 0 0 0.4em #e20416 inset, 0 0 0.5em rgba(201, 4, 20, 0.5), 0 0 0.1em rgba(254, 206, 210, 0.5);*/
+}
+@-webkit-keyframes pulse {
+    0% {
+        background-position: -50% center, right center, left center;
+    }
+    100% {
+        background-position: 150% center, right center, left center;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        background-position: -50% center, right center, left center;
+    }
+    100% {
+        background-position: 150% center, right center, left center;
+    }
+}
+.lineClassDDos:before, .lineClassDDos:after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -10px;
+    width: 1px;
+    height: 25px;
+}
+.lineClassDDos:before {
+    width: 14px;
+    right: -8px;
+    background: -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.4)  0%, rgba(255, 255, 255, 0) 75%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 75%);
+}
+.lineClassDDos:after {
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 255, 255, 0.3) 75%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 25%, rgba(255, 255, 255, 0.3) 75%, rgba(255, 255, 255, 0) 100%);
+}
+/*****************DDos 攻击线条 end*******************/
+.stageEffect{
+    top: -20%;
+    left: 3%;
+    width: 1600px;
+    height: 1000px;
+    position: absolute;
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+
+    transform: rotateY(0deg) rotateX(60deg) rotateZ(0deg);
+    -webkit-transform: rotateY(0deg) rotateX(60deg) rotateZ(0deg);
+    -moz-transform: rotateY(0deg) rotateX(60deg) rotateZ(0deg);
+    -o-transform: rotateY(0deg) rotateX(60deg) rotateZ(0deg);
+    -ms-transform: rotateY(0deg) rotateX(60deg) rotateZ(0deg);
+
+    transform-origin:50% 50%;
+    -webkit-transform-origin:50% 50%;
+    -moz-transform-origin:50% 50%;
+    -o-transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%;
+
+
+}
+
+.stageEffect1{
+    width: 100%;
+    height: 160%;
+    top: -40%;
+    left: -25%;
+    position: absolute;
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+
+    transform: rotateY(0deg) rotateX(70deg) rotateZ(0deg) scale3d(0.25,0.25,0.25);
+    -webkit-transform: rotateY(0deg) rotateX(70deg) rotateZ(0deg) scale3d(0.25,0.25,0.25);
+    -moz-transform: rotateY(0deg) rotateX(70deg) rotateZ(0deg) scale3d(0.25,0.25,0.25);
+    -o-transform: rotateY(0deg) rotateX(70deg) rotateZ(0deg) scale3d(0.25,0.25,0.25);
+    -ms-transform: rotateY(0deg) rotateX(70deg) rotateZ(0deg) scale3d(0.25,0.25,0.25);
+
+    transform-origin:50% 50%;
+    -webkit-transform-origin:50% 50%;
+    -moz-transform-origin:50% 50%;
+    -o-transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%;
+    /*background: red;*/
+
+
+}
+
+
+
+
+
+.screenClass{
+    position: absolute;
+    transform:translateZ(32px) rotateX(-85deg) rotateY(0deg);
+    -webkit-transform:translateZ(36px) rotateX(-85deg) rotateY(0deg);
+    -moz-transform:translateZ(36px) rotateX(-85deg) rotateY(0deg);
+    -o-transform:translateZ(36px) rotateX(-85deg) rotateY(0deg);
+    -ms-transform:translateZ(36px) rotateX(-85deg) rotateY(0deg);
+
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+    transform-origin:50% 100%;
+
+}
+
+.keyboardClass{
+    position: absolute;
+    transform:translateZ(4px) rotateX(-28deg)  rotateY(0deg);
+    -webkit-transform:translateZ(4px) rotateX(-28deg)  rotateY(0deg);
+    -moz-transform:translateZ(4px) rotateX(-28deg)  rotateY(0deg);
+    -o-transform:translateZ(4px) rotateX(-28deg)  rotateY(0deg);
+    -ms-transform:translateZ(4px) rotateX(-28deg)  rotateY(0deg);
+
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+    transform-origin:50% 100%;
+
+}
+
+.interfaceSwitchClass .back{
+    background: #AAAAAA;
+}
+.hostClass{
+    transform:translateZ(21px) rotateX(-90deg) rotateY(0deg);
+    -webkit-transform:translateZ(21px) rotateX(-90deg) rotateY(0deg);
+    -moz-transform:translateZ(21px) rotateX(-90deg) rotateY(0deg);
+    -o-transform:translateZ(21px) rotateX(-90deg) rotateY(0deg);
+    -ms-transform:translateZ(21px) rotateX(-90deg) rotateY(0deg);
+
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    -moz-transform-style:preserve-3d;
+    -o-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+}
+.hostClass .left{
+    background: #C4C5C9;
+}
+.hostClass .right{
+    background: #C4C5C9;
+}
+.hostClass .top{
+    background: #C4C5C9;
+}
+.hostClass .bottom{
+    background: #C4C5C9;
+}
+
+
+.hostfront{
+    transform:translateZ(1px);
+    width: 52px;
+    height: 30px;
+    background: #C4C5C9;
+}
+
+.hostback{
+    transform:rotateX(180deg) translateZ(1px);
+    width: 52px;
+    height: 30px;
+    background: #C4C5C9;
+}
+
+.hostleft{
+    transform:rotateY(90deg) translateZ(50px);
+    width: 3px;
+    height: 30px;
+    background: #C4C5C9;
+}
+
+
+.hostright{
+    transform:rotateY(-90deg) translateZ(2px);
+    width: 3px;
+    height: 30px;
+    background: #C4C5C9;
+}
+
+
+.hosttop{
+    transform:rotateX(90deg) translateZ(1px);
+    width: 52px;
+    height: 3px;
+    background: #C4C5C9;
+}
+.hostbottom{
+    transform:rotateX(-90deg) translateZ(23px);
+    width: 52px;
+    height: 3px;
+    background: #C4C5C9;
+}
+
+.cloudClass .front{
+    background: rgba(90, 193, 228, 0.40)
+}
+.cloudClass .left{
+    background: rgba(90, 193, 228, 0.40)
+}
+.cloudClass .right{
+    background: rgba(90, 193, 228, 0.40)
+}
+.cloudClass .top{
+    background: rgba(90, 193, 228, 0.40)
+}
+.cloudClass .bottom{
+    background: rgba(90, 193, 228, 0.40)
+}
+.cloudClass .back{
+    background: rgba(11, 170, 228,0.7)
+}
+
+
+/*****************************标注**********************************/
+
+@-webkit-keyframes identify_animation{
+    0%,100%{-webkit-transform:translateZ(13px);}
+    50%{-webkit-transform:translateZ(20px);}
+}
+@-moz-keyframes identify_animation{
+    0%,100%{-webkit-transform:translateZ(13px);}
+    50%{-webkit-transform:translateZ(20px);}
+}
+@-o-keyframes identify_animation{
+    0%,100%{-webkit-transform:translateZ(13px);}
+    50%{-webkit-transform:translateZ(20px);}
+}
+@-ms-keyframes identify_animation{
+    0%,100%{-webkit-transform:translateZ(13px);}
+    50%{-webkit-transform:translateZ(20px);}
+}
+
+
+.identifyClass{
+    position: fixed;
+    transform: translateZ(13px);
+    transform-style: preserve-3d;
+
+}
+
+.color_yellow{
+    top: 0px;
+    left: 0px;
+    animation:identify_animation 1s infinite ease-in-out;
+}
+
+.color_blue{
+    top: 0px;
+    left: 13px;
+    animation:identify_animation 1s infinite ease-in-out 0.1s;
+}
+.color_red{
+    top: 0px;
+    left: 26px;
+    animation:identify_animation 1s infinite ease-in-out 0.2s;
+}
+
+.color_yellow .side{
+    font-size: 9px;
+    background: rgba(220, 209, 15, 1);
+}
+.color_blue .side{
+    font-size: 9px;
+    background: rgba(43, 155, 220, 1);
+}
+
+.color_red .side{
+    font-size: 9px;
+    background: rgba(220, 66, 28, 1);
+}
+
+.identify_front{
+    transform:translateZ(5px);
+    width: 10px;
+    height: 10px;
+}
+
+.identify_back{
+    transform:rotateX(180deg) translateZ(5px);
+    width: 10px;
+    height: 10px;
+
+}
+
+.identify_left{
+    transform:rotateY(90deg) translateZ(5px);
+    width: 10px;
+    height: 10px;
+}
+
+
+.identify_right{
+    transform:rotateY(-90deg) translateZ(5px);
+    width: 10px;
+    height: 10px;
+}
+
+
+.identify_top{
+    transform:rotateX(90deg) translateZ(5px);
+    width: 10px;
+    height: 10px;
+}
+.identify_bottom{
+    transform:rotateX(-90deg) translateZ(5px);
+    width: 10px;
+    height: 10px;
+}
+/*****************************标注**********************************/
+
+/* =========================================
+选中标志
+========================================= */
+.circle{
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    box-sizing:border-box;
+    transform:translateX(-29px) translateY(-40px);
+}
+.circle1 {
+    animation: circle1 4s linear infinite, circle-entry ease-in-out;
+    border-radius: 50%;
+    border: 3px solid rgba(8,135,193,1);
+    box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 0 0 3px rgba(0,89,130,1);
+    height: 80%;
+    width: 80%;
+    overflow: hidden;
+    opacity: 0.8;
+    margin: 10%;
+    box-sizing:border-box;
+}
+
+.inner-cirlce1 {
+    border-radius: 50%;
+    border: 8px solid rgba(0,89,130,1);
+    height: 90%;
+    width: 90%;
+    margin: 5%;
+    border-top:5px solid rgba(0,89,130,0);
+    border-left:5px solid rgba(0,89,130,0);
+    box-sizing:border-box;
+}
+
+.ddosCircle1 {
+    animation: ddosCircle1 4s linear infinite, circle-entry ease-in-out;
+    border-radius: 50%;
+    border: 3px solid rgb(193, 9, 7);
+    box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 0 0 3px rgb(130, 19, 0);
+    height: 80%;
+    width: 80%;
+    overflow: hidden;
+    opacity: 0.8;
+    margin: 10%;
+    box-sizing:border-box;
+}
+
+.ddosInner-cirlce1 {
+    border-radius: 50%;
+    border: 8px solid rgb(130, 18, 0);
+    height: 90%;
+    width: 90%;
+    margin: 5%;
+    border-top:5px solid rgba(0,89,130,0);
+    border-left:5px solid rgba(0,89,130,0);
+    box-sizing:border-box;
+}
+
+
+@keyframes circle1 {
+    0% {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 0 0 3px rgba(0,89,130,1);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 0 0 10px rgba(0,89,130,0);
+    }
+}
+@keyframes ddosCircle1 {
+    0% {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 0 0 3px rgb(130, 13, 3);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+        box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 0 0 10px rgba(0,89,130,0);
+    }
+}
+
+/* =========================================
+选中标志 end
+========================================= */

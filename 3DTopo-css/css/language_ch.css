@@ -1,0 +1,8 @@
+.reportClassContAnimation section p .title{
+    width: 74px;
+    max-width: 40%;
+}
+.reportClassContAnimation section p .contant{
+    overflow: hidden;
+    max-width: 60%;
+}

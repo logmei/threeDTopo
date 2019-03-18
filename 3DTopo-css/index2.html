@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+ <html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>css3 3d多重变形制作3d立方体</title>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="css/common.css"/>
+        <link rel="stylesheet" href="css/component.css"/>
+        <link rel="stylesheet" href="css/model.css"/>
+        <link rel="stylesheet" href="css/report.css"/>
+        <link rel="stylesheet" href="css/animationCss.css"/>
+        <link rel="stylesheet" href="css/attackCss.css"/>
+        <link rel="stylesheet" href="css/language_en.css"/><!--英文版本-->
+        <!-- <link rel="stylesheet" href="css/language_ch.css"/> --><!--中文版本-->
+        <script src="js/tool.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/topo3D.js"></script>
+        <script src="js/utils.core.js"></script>
+        <script src="js/pie.js"></script>
+        <script src="js/report.js"></script>
+        <script src="js/tool.position.js"></script>
+        <script src="js/echarts/echarts.js"></script>
+        <script src="js/echarts/lineRequire.js"></script>
+        <script src="js/echarts/echartRequire.js"></script>
+        <!--滚动条美化-->
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script>
+          $(document).ready(function() {
+
+           
+            $('.wai').niceScroll({ 
+                cursorcolor: "rgba(0,89,130,0.8)",//#CC0071 光标颜色 
+                cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0 
+                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备 
+                cursorwidth: "2px", //像素光标的宽度 
+                cursorborder: "0", //     游标边框css定义 
+                cursorborderradius: "5px",//以像素为光标边界半径 
+                autohidemode: true, //是否隐藏滚动条 
+                boxzoom:true
+            });
+              $('.contant').niceScroll({
+                  cursorcolor: "rgba(0,89,130,0.8)",//#CC0071 光标颜色
+                  cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+                  touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+                  cursorwidth: "2px", //像素光标的宽度
+                  cursorborder: "0", //     游标边框css定义
+                  cursorborderradius: "5px",//以像素为光标边界半径
+                  autohidemode: true, //是否隐藏滚动条
+                  boxzoom:true
+              });
+          });
+        </script>
+
+        <!--进度条 start-->
+        <link rel="stylesheet" type="text/css" href="css/progressBar/styles.css">
+        <script src="js/progressBar/progressBar.js"></script>
+        <!--进度条 end-->
+    </head>
+    <body>
+     <!--剧场-->
+        <div class="cl-effect-8">
+          <a href="#" class="autoPlay">play</a>
+          <a href="#" class="selfPlay">Pause</a>
+        </div>
+        
+        <!--修复-->
+        <div class="repair_end">
+          <div class="dian"></div>
+          <div class="dian"></div>
+          <div class="dian"></div>
+          <div class="dian"></div>
+            <div class="reportTool">
+                <div class="reportClosed repairBoxClosedPosition" onclick="closeRepairBox(this)">+</div>
+            </div>
+          <div class="contant">
+            <!-- <p><span>解答解答了解答来得及按揭贷款剧烈的萨监考老师打开降</span></p>
+            <p class="repair_bg"><span>解答解答了解答来得及按揭贷款剧烈的萨监考老师打开降</span></p> -->
+          </div>
+        </div>
+        <!--END 修复-->
+
+        <div class="on"></div>
+        <nav class="optionsClass">
+            <div class="off"></div>
+            <!--操作-->
+            <!-- <a href="#" class="autoPlay">播放</a>
+            <a href="#" class="selfPlay">暂停</a> -->
+
+            <!--调节速度滚动条-->
+            <section id="menu">
+                <label>speed</label>
+                <ul id="speedUl" class="playSpeedDiv ">
+                    <li  class="speedNum1" style="cursor: pointer">-</li>
+                    <li id="speedLine" class="speedLine progressLine"></li>
+                    <li  class="speedNum2" style="cursor: pointer">+</li>
+                    <div class="speedTip">120&nbsp;s/c</div>
+                    <div id="speedMoveBlock" class="speedMoveBlock progressBlock"></div>
+                </ul>
+                <hr class="hr0" />
+                <label>layers</label>
+                <table class="LayerTableClass">
+                  <tbody>
+                  </tbody>
+                </table>
+
+                <hr class="hr0" />
+                <label>stage scale</label>
+                <ul id="scaleUl" class="playSpeedDiv ">
+                    <li id="reduce" style="cursor: pointer">-</li>
+                    <li >
+                        <ul id="scaleLine" class="scaleLine progressLine">
+
+                        </ul>
+                    </li>
+                    <li id="add"  style="cursor: pointer">+</li>
+                    <div id="scaleMoveBlock" class="scaleMoveBlock progressBlock"></div>
+                </ul>
+
+               <!-- <hr class="hr0" />
+                <label>配置管理</label>
+                <ul class="configs">
+                    <li><input type="radio" name="configs" value="config_info" checked><span>配置信息</span></li>
+                    <li><input type="radio" name="configs" value="config_perform"><span>性能显示</span> </li>
+                </ul>-->
+               </section>
+
+        </nav>
+
+      <div class="wai">
+        <div class="stage" >
+            <!--舞台效果-->
+            <div class="stageEffect" id="stageEffect">
+                <!--舞台-->
+                <div class="stageAll" id="stageDiv">
+                </div>
+
+            </div>
+         <!--信息显示框-->
+           <div id="tip"  style="display: none">
+                 <div class="reportClass"  onclick="reportOfDevice.clickReportTool(this);">
+                     <div class="cont reportClassContAnimation">
+                        <!--此处为装饰-->
+                        <div class="dian"></div>
+                        <div class="dian"></div>
+                        <div class="dian"></div>
+                        <div class="dian"></div>
+                        <!--END 此处为装饰-->
+ 
+                         <!--弹框 header-->
+                         <div class="reportTool">
+                            <div class="reportClosed reportBoxClosedPosition" onclick="closeDiv(this)">+</div>
+                         </div>
+
+                         <!--弹框左侧-->
+                         <div class="reportTool_left">
+                           <!--tab 选择-->
+                           <ul class="tab_chose">
+                             <!--<li>
+                                <input id="tab_report_1" type="radio" checked name="report_tab">
+                                <label for="tab_report_1">设备信息</label>
+                                <section  class="tab_report_section">
+                                   &lt;!&ndash;设备信息&ndash;&gt;
+                                </section>
+                             </li>-->
+
+                           </ul>
+
+                         </div>
+
+                         <div class="reportTool_right">
+                          <div id="my_pie" class="_pie" >
+                            <div class="report_title"><div class="active"></div></div>
+                             <!--报告信息-->
+                            <div id="my_pie_container" class="_pie_container" style="width: 230px;height: 190px;">
+                            </div>
+                          </div>
+                         </div>
+
+                         <div class="reportTool_bottom">
+                           <!--cpu-->
+                           <div id="my_line_cpu" class="performBox _line_cpu line_chart" >
+
+                               <div class="my_line_container" style="width:120px;height:55px;"></div>
+                               <div class="div_peroformTitle">
+                                   <span class="performTitle">
+                                          <span>CPU</span><span>0%</span>2.56GHz
+                                      </span>
+                               </div>
+                           </div>
+
+                           <div id="my_line_M" class="performBox _line_M line_chart" >
+
+                               <div class="my_line_container" style="width:120px;height:55px;"></div>
+                               <div class="div_peroformTitle">
+                                      <span class="performTitle">
+                                          <span>Memory</span><span>0%</span>
+                                      </span>
+                               </div>
+                           </div>
+
+                         </div>
+                         <!--<div class="attackHeart heartClass">
+                             &lt;!&ndash;攻击信息-&ndash;&gt;
+                             <div class="heart-shape"></div>
+                         </div>-->
+                     </div>
+                 </div>
+             </div>
+             
+             
+
+
+        </div>
+      </div>
+    </body>
+    <script type="text/javascript">
+        var topo;
+       // move(60);//鼠标按下且移动时触发，
+        $(function($){
+         /*  $(".container").mouseover(function(){
+                   $(".tip").css("border-top","200px")
+                           .css("border-bottom","200px")
+                           .css("border-left","200px")
+                           .css("border-right","200px")
+                           .css("opacity",1)
+                           .css("transform","rotateX(90deg) translateZ(117px) translateY(-15px)")
+                           .css("transition","border-top 0.7s linear,border-bottom 1.5s linear,border-left 1.5s linear,border-right 1.5s linear,opacity 1.5s linear,transform 1.5 linear");
+
+            });
+
+            $(".container").mouseout(function(){
+                $(".tip").css("width","200px").css("height","200px").css("opacity",0).css("transition","width,height,opacity 0.5s linear");
+
+            });*/
+            topo= Topo.create('{"nodes":'+nodesJson+',"links":'+linksJson+',"layers":'+layerJson+'}',"stageDiv");
+            Utils_Topo3D.params.autoPlay=false;
+
+            Utils_Topo3D.initSpeedMoveBlock();
+            Utils_Topo3D.initLayers();
+            Utils_Topo3D.initScaleMoveBlock();
+            Utils_Topo3D.move();
+
+            //报告提示框
+            reportOfDevice.initSetting(topo);
+            $(".LayerTableClass").find("span").last().click()
+            $(".autoPlay").click(function(){
+                topo.config.layerParams.autoPlay=true;
+                topo.autoRotate();
+            })
+
+            $(".selfPlay").click(function(){
+                topo.config.layerParams.autoPlay=false;
+                topo.autoRotate();
+            })
+
+           $("input[name='configs']").click(function(){
+               if($(this).val()=="config_info"){
+                   topo.config.configOptions.config_info=true;
+                   topo.config.configOptions.config_perform=false;
+                   reportOfDevice.configOptions.config_info=true;
+                   reportOfDevice.configOptions.config_perform=false;
+               }
+               if($(this).val()=="config_perform"){
+                   topo.config.configOptions.config_info=false;
+                   topo.config.configOptions.config_perform=true;
+                   reportOfDevice.configOptions.config_info=false;
+                   reportOfDevice.configOptions.config_perform=true;
+               }
+               topo.clearIdentifys();
+               topo.paintingIdentifys();
+           });
+            /**********************画饼图***********************/
+
+        });
+
+        //关闭报告框
+        function closeDiv(obj){
+            reportOfDevice.closeTip(obj);
+        }
+        //关闭修复提示框
+        function closeRepairBox(obj){
+            $(obj).parent().parent().animate({opacity:0},"slow");
+        }
+
+
+       //显示报告内容
+       function showReportCont(deviceId){
+           reportOfDevice.showTip(deviceId);
+
+           // setTimeout(function(){reportOfDevice.showDDosTip(deviceId,"sssssssssssssssssssss")}, 500);
+       }
+
+
+       /* paintingNodes($(".stageBottom"));
+
+        paintingLines($(".stageBottom"));*/
+
+
+
+
+
+        /*paintingLineBottoms(null,$(".shebei1"),null,$(".shebei2"),"line5");*/
+    </script>
+     <script src="js/ddos.js"></script>
+ </html>

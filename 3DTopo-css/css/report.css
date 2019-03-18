@@ -1,0 +1,316 @@
+@keyframes  showReport{
+    0%{opacity: 1;top:40px;left:950px;width: 0px;height: 0px}
+    30%{opacity: 1;top:40px;width: 500px;height: auto;}
+    /*70%{opacity:0.3;width:376px;height: auto;}*/
+    100%{opacity:1;width:500px;height: auto;}
+}
+@keyframes  showReportCont{
+    0%{height: 0%}
+    100%{height: 100%}
+}
+.reportClass{
+    top:20px;
+    left: 20px;
+    position: absolute;
+    /*border: 1px solid #222;*/
+    box-shadow: 0 0 1px 0;
+    z-index: 0;
+    width: 500px;
+    height: auto;
+    overflow: hidden;
+    /* line-height: 28px; */
+    /*background: url(../img/bg_03.png) no-repeat right top;*/
+    border-left: 2px solid rgba(255,255,255,0.5);
+    border-right: 2px solid rgba(255,255,255,0.5);
+    background-position:right 70px;
+    /*z-index: 0;*/
+}
+.reportClass-title{
+    background: rgba(168,66,0,0.6);
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+    padding: 0 10px;
+}
+.dian{
+    position: absolute;
+    width: 4px;
+    height:2px;
+    background: rgba(255,255,255,0.8);
+}
+.dian:nth-child(1){
+    left: 0;
+    top:0;
+}
+.dian:nth-child(2){
+    left: 0;
+    bottom:0;
+}
+.dian:nth-child(3){
+    right: 0;
+    top:0;
+}
+.dian:nth-child(4){
+    right: 0;
+    bottom:0;
+}
+
+
+.reportClassAnimation{
+    animation:showReport 0.5s linear;
+}
+
+.reportClass .reportTool{
+    height: 30px;
+    width: 100%;
+    /* position: absolute; */
+    cursor:move;
+   /* z-index: 10;*/
+}
+
+.reportClass .reportClassContAnimation{
+    color: #BFBEBE;
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 290px;
+    /*z-index: 2;*/
+    overflow: hidden;
+    box-sizing:border-box;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=rgba(0,0,0,.5), endColorstr=rgba(39,109,145,.3));/*IE<9>*/ 
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)";/*IE8+*/
+    background: -moz-linear-gradient(-45deg, rgba(0,0,0,.8), rgba(14,17,18,0.9), rgba(24,35,40,.6));
+    background: -webkit-gradient(linear,0 100%, 100% 0%, from(rgba(14,17,18,0.9)), color-stop(1, rgba(14,17,18,1)), to(rgba(24,35,40,.6)));
+    background: -webkit-linear-gradient(-45deg, rgba(0,0,0,.8), rgba(14,17,18,0.9), rgba(24,35,40,.6));
+    background: -o-linear-gradient(-45deg, rgba(0,0,0,.8), rgba(14,17,18,0.9), rgba(24,35,40,.6));
+    /* background: url(images/dian.png) left top,url(images/dian.png) right top,url(images/dian.png) left bottom,url(images/dian.png) right bottom;
+    background-repeat: no-repeat; */
+}
+.repairBoxClosedPosition{
+    margin-right: 0px;
+    margin-top: -17px;
+}
+.reportBoxClosedPosition{
+    margin-right: 9px;
+    margin-top: 4px;
+}
+
+.reportClosed{
+    border-radius: 50%;
+    transform: rotate(45deg);
+    font-size: 35px;
+    color: #999;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    cursor: pointer;
+    float: right;
+    line-height: 22px;
+    transition:background,color 0.5s,0.5s linear,linear;
+    -webkit-transition:background,color 0.5s,0.5s linear,linear;
+    -moz-transition:background,color 0.5s,0.5s linear,linear;
+    -o-transition:background,color 0.5s,0.5s linear,linear;
+    -ms-transtion:background,color 0.5s,0.5s linear,linear;
+}
+.reportClosed:hover{
+    background:  rgba(150,150,150,.3);
+    color: #000;
+    transition:background,color 0s,0s linear,linear;
+    -webkit-transition:background,color 0s,0s linear,linear;
+    -moz-transition:background,color 0s,0s  linear,linear;
+    -o-transition:background,color 0s,0s  linear,linear;
+    -ms-transtion:background,color  0s,0s  linear,linear;
+}
+
+/**
+饼图
+*/
+#my_pie{
+    width: 100%;
+    height: auto;
+    overflow:visible;
+    display: none;
+}
+
+#my_pie canvas{
+    position: relative;
+    left: -40px;
+}
+#pie_canvas{
+    rgba(0,0,0,0,.2);
+}
+
+/*设备信息 and DDos攻击信息 tab选项*/
+@keyframes  attackAnimation{
+    0%{transform:rotateZ(-30deg)}
+    100%{transform:rotateZ(30deg)}
+}
+#ddos-attack{
+    transform-origin:50% 50%;
+    -webkit-transform-origin:50% 50%;
+    -moz-transform-origin:50% 50%;
+    -o-transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%;
+    position: absolute;
+    animation:attackAnimation 0.5s alternate linear infinite;
+}
+.repairClass{
+    width: 106px;
+    position: absolute;
+    top: 52px;
+    right: 20px;
+    opacity: 0.8;
+}
+.reportTool_left,.reportTool_right{
+    width: 50%;
+    float: left;
+    overflow: visible;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+.reportTool_bottom{
+    width: 100%;
+    height: auto;
+    /*overflow: visible;*/
+    padding: 0px 10px 15px;
+    float: left;
+}
+.tab_chose{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    font-weight: 600;
+    position: relative;
+}
+.tab_chose li{
+    /* float: left; */
+    margin-right: 15px;
+    list-style: none;
+    overflow: hidden;
+    color: #BFBEBE;
+    text-decoration: none;
+
+}
+.tab_chose li input{
+    display: none;
+
+}
+.tab_chose li label{
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding:0 5px;
+    line-height: 28px;
+}
+/* .reportClassContAnimation h3{
+    width:100%;
+    margin-bottom: 15px;
+} */
+.tab_report_section{
+    width: 100%;
+    overflow: hidden;
+    padding:0;
+    margin: 0;
+}
+
+.tab_report_section{
+    display: none;
+    margin-top: 30px;
+    border-top: 1px solid #555;
+    padding: 10px 0;
+}
+.tab_chose [id^=tab_report_]:checked ~ [for^=tab_report_]{
+    border-bottom: 2px solid #0f7eb1;
+}
+.tab_chose [id^=tab_report_]:checked ~ [class^=tab_report_] {
+  display: block;
+}
+.report_title{
+    border-bottom: 1px solid #555;
+    overflow: hidden;
+    line-height: 28px;
+}
+.active{
+    border-bottom:2px solid #0f7eb1;
+    display: block;
+    float: left;
+    padding:0 2px;
+}
+/* .reportClassContAnimation section h3{
+    border-bottom: 1px solid #555;
+} */
+/* .reportClassContAnimation section{
+    width: 50%;
+    padding:0px 20px 15px;
+    overflow: hidden;
+    box-sizing:border-box;
+} */
+
+ .reportClassContAnimation section p{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding:5px 0;
+}
+.reportClassContAnimation section p span{
+    display: block;
+    float: left;
+    word-wrap: break-word; 
+    word-break: normal; 
+}
+.reportClassContAnimation section p span:nth-child(2){
+    padding-left: 10px;
+}
+.reportClassContAnimation section p .title{
+    text-align: right;
+    font-weight: 600;
+}
+.reportClassContAnimation section p .contant{
+    overflow: hidden;
+}
+/*END 设备信息 and DDos攻击信息 tab选项*/
+
+
+/****折线图***/
+.line_chart{
+    display: none;
+    overflow: visible;
+    float: left;
+    padding-top:10px;
+    padding-left: 20px;
+    height: 82px;
+}
+.div_peroformTitle{
+    width: 96px;
+    float: left;
+}
+.performTitle{
+    color: #999;
+    width: auto;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 600;
+
+    position: relative;
+}
+.performTitle>span:first-of-type{
+    font-size: 18px;
+    margin: 0 10px;
+    display: block;
+}
+.performTitle>span:last-of-type{
+    margin: 0 3px 0 12px;
+}
+.my_line_container{
+    top:0px;
+    left: 0px;
+    float: left;
+}
+
+
+#repair-info span{
+    display: block;
+}
