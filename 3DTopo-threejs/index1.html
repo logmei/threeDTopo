@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+ <html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>css3 3d多重变形制作3d立方体</title>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <link rel="stylesheet" href="css/common.css"/>
+        <link rel="stylesheet" href="css/component.css"/>
+        <link rel="stylesheet" href="css/model.css"/>
+        <link rel="stylesheet" href="css/report.css"/>
+        <link rel="stylesheet" href="css/animationCss.css"/>
+        <link rel="stylesheet" href="css/attackCss.css"/>
+        <script src="js/tool.js"></script>
+        <script src="js/common.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/topo3D.js"></script>
+        <script src="js/utils.core.js"></script>
+        <script src="js/pie.js"></script>
+        <script src="js/report.js"></script>
+        <!--滚动条美化-->
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script>
+          $(document).ready(function() {
+
+           
+            $('.wai').niceScroll({ 
+                cursorcolor: "rgba(0,89,130,0.8)",//#CC0071 光标颜色 
+                cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0 
+                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备 
+                cursorwidth: "2px", //像素光标的宽度 
+                cursorborder: "0", //     游标边框css定义 
+                cursorborderradius: "5px",//以像素为光标边界半径 
+                autohidemode: true, //是否隐藏滚动条 
+                boxzoom:true
+            });
+          });
+        </script>
+        <style>
+            .stage{
+                height: 100%;
+
+            }
+            .on, nav{
+                display: none;
+            }
+            .stageAll{
+                width: 300%;
+                height: 150%;
+            }
+            .wai{
+                background: none;
+            }
+            body{background: none}
+        </style>
+    </head>
+    <body>
+     <!--剧场-->
+        <div class="on"></div>
+        <nav class="optionsClass cl-effect-8">
+            <div class="off"></div>
+            <!--操作-->
+            <a href="#" class="autoPlay">播放</a>
+            <a href="#" class="selfPlay">暂停</a>
+
+            <!--调节速度滚动条-->
+            <section id="menu">
+                <label>转速</label>
+                <ul class="playSpeedDiv ">
+                    <li  class="speedNum1">快</li>
+                    <li id="speedLine" class="speedLine progressLine"></li>
+                    <li  class="speedNum2">慢</li>
+                    <div class="speedTip">60&nbsp;s/c</div>
+                    <div id="speedMoveBlock" class="speedMoveBlock progressBlock"></div>
+                </ul>
+                <hr class="hr0" />
+                <label>层</label>
+                <table class="LayerTableClass">
+                  <tbody>
+                  </tbody>
+                </table>
+
+                <hr class="hr0" />
+                <label>舞台缩放</label>
+                <ul id="scaleUl" class="playSpeedDiv ">
+                    <li id="reduce" style="cursor: pointer">-</li>
+                    <li >
+                        <ul id="scaleLine" class="scaleLine progressLine">
+                            <li>0.3</li><li>0.5</li><li>0.7</li><li>1</li><li>1.3</li><li>1.5</li><li>1.8</li>
+                        </ul>
+                    </li>
+                    <li id="add"  style="cursor: pointer">+</li>
+                    <div id="scaleMoveBlock" class="scaleMoveBlock progressBlock"></div>
+                </ul>
+               </section>
+
+        </nav>
+
+      <div class="wai">
+        <div class="stage">
+            
+            
+
+            <!--舞台效果-->
+            <div class="stageEffect1" id="stageEffect">
+                <!--舞台-->
+                <div class="stageAll" id="stageDiv">
+                </div>
+
+            </div>
+         <!--信息显示框-->
+           <div id="tip"  style="display: none">
+                 <div class="reportClass">
+                     <div class="cont reportClassContAnimation">
+                        <!--此处为装饰-->
+                        <div class="dian"></div>
+                        <div class="dian"></div>
+                        <div class="dian"></div>
+                        <div class="dian"></div>
+                        <!--END 此处为装饰-->
+
+                         <div class="reportTool" onclick="reportOfDevice.clickReportTool(this);">
+                            <div class="reportClosed" onclick="closeDiv(this)">+</div> 
+                         </div>
+                         
+                         <section class="report_device_section repor_section">
+                             <!--设备信息-->
+                         </section>
+
+                         <!--<div class="attackHeart heartClass">
+                             &lt;!&ndash;攻击信息-&ndash;&gt;
+                             <div class="heart-shape"></div>
+                         </div>-->
+                        <section  class="report_ddos_section repor_section">
+
+                        </section>
+
+
+                         <div id="my_pie" class="_pie">
+                             <h3></h3>
+                             <!--报告信息-->
+                             <canvas id="pie_canvas"></canvas>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+
+        </div>
+      </div>
+    </body>
+    <script type="text/javascript">
+        var topo;
+       // move(60);//鼠标按下且移动时触发，
+        $(function($){
+         /*  $(".container").mouseover(function(){
+                   $(".tip").css("border-top","200px")
+                           .css("border-bottom","200px")
+                           .css("border-left","200px")
+                           .css("border-right","200px")
+                           .css("opacity",1)
+                           .css("transform","rotateX(90deg) translateZ(117px) translateY(-15px)")
+                           .css("transition","border-top 0.7s linear,border-bottom 1.5s linear,border-left 1.5s linear,border-right 1.5s linear,opacity 1.5s linear,transform 1.5 linear");
+
+            });
+
+            $(".container").mouseout(function(){
+                $(".tip").css("width","200px").css("height","200px").css("opacity",0).css("transition","width,height,opacity 0.5s linear");
+
+            });*/
+            topo= Topo.create('{"nodes":'+nodesJson+',"links":'+linksJson+',"layers":'+layerJson+'}',"stageDiv");
+            Utils_Topo3D.params.autoPlay=false;
+
+            Utils_Topo3D.initSpeedMoveBlock();
+            Utils_Topo3D.initLayers();
+            Utils_Topo3D.initScaleMoveBlock();
+            Utils_Topo3D.move();
+
+            //报告提示框
+            reportOfDevice.initSetting(topo);
+              // topo.config.layerParams.autoPlay=false;
+              //   topo.autoRotate();
+
+            $(".autoPlay").click(function(){
+                topo.config.layerParams.autoPlay=true;
+                topo.autoRotate();
+            })
+
+            $(".selfPlay").click(function(){
+                topo.config.layerParams.autoPlay=false;
+                topo.autoRotate();
+            })
+
+
+            /**********************画饼图***********************/
+
+        });
+
+       function closeDiv(obj){
+           reportOfDevice.closeTip(obj);
+       }
+
+
+       //显示报告内容
+       function showReportCont(deviceId){
+           reportOfDevice.showTip(deviceId);
+       }
+
+       /* paintingNodes($(".stageBottom"));
+
+        paintingLines($(".stageBottom"));*/
+
+
+
+
+
+        /*paintingLineBottoms(null,$(".shebei1"),null,$(".shebei2"),"line5");*/
+
+
+    </script>
+ </html>

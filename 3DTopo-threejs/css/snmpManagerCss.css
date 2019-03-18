@@ -1,0 +1,181 @@
+.snmpBox{
+    position: relative;
+    top:40%;
+    max-height: 570px;
+}
+.showSnmpRanking{
+    color: #fff;
+    z-index: 2000;
+    left: 1px;
+    /*position: absolute;
+    top: 40%;
+    left: 2px;*/
+    width: 36px;
+    height: 93px;
+    border: 1px solid #353434;
+    color: #fff;
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    -webkit-animation: alarmBox 2.5s linear infinite;
+    animation: alarmBox 2.5s linear infinite;
+    box-shadow: 0 0 1px rgba(255,255,255,0.5);
+}
+.showSnmpRanking span{
+    display: inline-block;
+    line-height: 92px;
+    color: #eee;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-animation: alarmRight 2.5s linear infinite;
+    animation:alarmRight 2.5s linear infinite;
+}
+.showAlarmInfo{
+    opacity: 0;
+    width: 0px;
+    position: absolute;
+    color: #fff;
+    top: -23px;
+    left: 40px;
+    background: rgba(255,255,255,0.1);
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 10px 5px 10px 10px;
+    box-shadow: 0 0 10px;
+}
+.alarmContent{
+    color: #fff;
+    line-height: 22px;
+    top: -23px;
+    float: left;
+    padding: 0px 10px;
+    border-right: 1px solid rgba(109, 108, 108, 0.3);
+}
+
+.alarmLeft{
+    display: none;
+    /* position: inherit; */
+    float: right;
+    width: 36px;
+    height: 100%;
+    /* border: 1px solid; */
+    color: #fff;
+    -webkit-animation: alarmBox 2.5s linear infinite;
+    animation: alarmBox 2.5s linear infinite;
+}
+.alarmLeft span{
+    display: block;
+    text-align: right;
+    line-height: 92px;
+    color: #eee;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-animation: alarmLeft 2.5s linear infinite;
+    animation: alarmLeft 2.5s linear infinite;
+}
+
+@-webkit-keyframes alarmBox {
+    0% {
+        opacity: 0.5;
+    }
+    20%{
+        opacity: 0.8;
+    }
+    50%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+@keyframes alarmBox {
+    0% {
+        opacity: 0.5;
+    }
+    20%{
+        opacity: 0.8;
+    }
+    50%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@-webkit-keyframes alarmRight {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(7px);
+        -webkit-transform: translateX(7px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(9px);
+        -webkit-transform: translateX(9px);
+        /*transform: translateX(15px);
+        -webkit-transform: translateX(15px);*/
+    }
+
+}
+@keyframes alarmRight {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(7px);
+        -webkit-transform: translateX(7px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(9px);
+        -webkit-transform: translateX(9px);
+       /* transform: translateX(15px);
+        -webkit-transform: translateX(15px);*/
+    }
+}
+
+@-webkit-keyframes alarmLeft {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(-7px);
+        -webkit-transform: translateX(-7px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(-9px);
+        -webkit-transform: translateX(-9px);
+        /*transform: translateX(15px);
+        -webkit-transform: translateX(15px);*/
+    }
+
+}
+@keyframes alarmLeft {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+        transform: translateX(-7px);
+        -webkit-transform: translateX(-7px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(-9px);
+        -webkit-transform: translateX(-9px);
+        /* transform: translateX(15px);
+         -webkit-transform: translateX(15px);*/
+    }
+}

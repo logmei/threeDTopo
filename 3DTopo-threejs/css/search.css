@@ -1,0 +1,296 @@
+.searchDiv{
+    position: absolute;
+    width: 384px;
+    height: 64px;
+    top: 12px;
+    padding: 14px;
+    right: 340px;
+}
+
+.closeResultList{
+    cursor: pointer;
+    float: right;
+    margin-top: 6px;
+    width: 25px;
+    height: 18px;
+    background: url('../img/updown.png');
+    background-repeat: no-repeat;
+
+}
+.UpAnimal{
+    transition:background-position-y 1s;
+    -webkit-transition:background-position-y 1s;
+    -moz-transition:background-position-y 1s;
+    -o-transition:background-position-y 1s;
+    -ms-transition:background-position-y 1s;
+}
+
+.checkedClass{
+    checked:"checked";
+}
+
+.Up{
+  /* background-position-y:-20px ;*/
+  /* transform:rotate(180deg);*/
+}
+.closeResultList:visited{
+    background-position-y:0px ;
+}
+
+.UpAnimal:hover{
+
+    background-position-y:-20px ;
+}
+
+
+.searchDiv span{
+    color: #eee;
+    font: 12px Lucida Grande,sans-serif;
+    text-shadow: 0 -1px 0 #111;
+    margin-right: 12px;
+}
+.checkDiv{
+    margin: 0px 6px 3px;
+    padding: 0px 0px 10px;
+}
+.checkDiv:before{
+    margin-top: 32px;
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 300px;
+    background: #222;
+    background: -webkit-linear-gradient(left,rgba(0, 255, 255, 0.10), #3B3B3B);
+    background: -moz-linear-gradient(left,rgba(0, 255, 255, 0.10), #3B3B3B);
+    background: -o-linear-gradient(left,rgba(0, 255, 255, 0.10), #3B3B3B);
+    background: -ms-linear-gradient(left,rgba(0, 255, 255, 0.10), #3B3B3B);
+    background: linear-gradient(left,rgba(0, 255, 255, 0.10), #3B3B3B);
+}
+.searchInput{
+    /*border: 2px solid rgba(255,255,255,0.4);
+    box-shadow: 0 0 3px 1px rgba(255,255,255,0.5);
+    background: rgba(255,255,255,.2);
+    width: 241px;
+    height: 25px;
+    vertical-align: middle;*/
+    background: #222;
+    background: -webkit-linear-gradient(#333, #222);
+    background: -moz-linear-gradient(#333, #222);
+    background: -o-linear-gradient(#333, #222);
+    background: -ms-linear-gradient(#333, #222);
+    background: linear-gradient(#333,#222);
+    border: 1px solid #444;
+    color: #888;
+    display: block;
+    float: left;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    text-shadow: 0 -1px 0 #000;
+    width: 241px;
+    border-radius: 5px 0 0 5px;
+}
+.searchDiv button{
+   background: #222;
+    background: -webkit-linear-gradient(#333, #222);
+    background: -moz-linear-gradient(#333, #222);
+    background: -o-linear-gradient(#333, #222);
+    background: -ms-linear-gradient(#333, #222);
+    background: linear-gradient(#333, #222);
+    border: 1px solid #444;
+    border-left-color: #000;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 0 #000;
+    color: #fff;
+    display: block;
+    float: left;
+    font-family: 'Cabin', helvetica, arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-shadow: 0 -1px 0 #000;
+    width: 80px;
+}
+
+.searchDiv button:hover,
+.searchDiv button:focus {
+    background: #292929;
+    background: -webkit-linear-gradient(#393939, #292929);
+    background: -moz-linear-gradient(#393939, #292929);
+    background: -o-linear-gradient(#393939, #292929);
+    background: -ms-linear-gradient(#393939, #292929);
+    background: linear-gradient(#393939, #292929);
+    color: #2FA1D6;
+    outline: none;
+}
+
+.searchDiv button:active {
+    background: #292929;
+    background: -webkit-linear-gradient(#393939, #292929);
+    background: -moz-linear-gradient(#393939, #292929);
+    background: -o-linear-gradient(#393939, #292929);
+    background: -ms-linear-gradient(#393939, #292929);
+    background: linear-gradient(#393939, #292929);
+    box-shadow: 0 1px 0 #000, inset 1px 0 1px #222;
+    top: 1px;
+}
+.searchDiv .resultList{
+    display: none;
+    margin: 40px 0px;
+    padding: 10px;
+    max-height: 360px;
+    max-width: 500px;
+    border: 0px solid rgba(255,255,255,0.4);
+    box-shadow: 0px 0px 3px 2px rgba(255,255,255,.3);
+    color: #eee;
+    font: 11px Lucida Grande,sans-serif;
+    text-shadow: 0 -1px 0 #111;
+    background: rgba(255,255,255,.2);
+}
+.searchDiv .resultDiv{
+    margin: 10px 5px 5px 0px;
+    max-height: 296px;
+    max-width: 500px;
+    border: 0px solid rgba(255,255,255,0.4);
+    color: #eee;
+    font: 11px Lucida Grande,sans-serif;
+    text-shadow: 0 -1px 0 #111;
+}
+
+.searchDiv .resultList input{
+    vertical-align: middle;
+}
+
+.searchDiv .resultList input[type="button"]{
+     padding: 3px 5px;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #eee;
+    font: 11px Lucida Grande,sans-serif;
+    text-shadow: 0 -1px 0 #111;
+    background: #4d4d4d;
+}
+
+.searchDiv .resultList ul{
+    list-style: none;
+}
+.searchDiv .resultList ul li{
+    padding: 2px 5px;
+    height: 27px;
+    vertical-align: middle;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+.searchDiv .resultList ul li:hover{
+    background: rgba(43, 155, 220, 0.40);
+    font-size: 14px;
+}
+.searchDiv .resultList ul li:hover span{
+    font-size: 14px;
+}
+
+.searchInput::-webkit-input-placeholder {
+    color: #888;
+}
+
+.searchInput:-moz-placeholder {
+    color: #888;
+}
+
+.searchInput:focus {
+    -webkit-animation: glow 800ms ease-out infinite alternate;
+    -moz-animation: glow 800ms ease-out infinite alternate;
+    -o-animation: glow 800ms ease-out infinite alternate;
+    -ms-animation: glow 800ms ease-out infinite alternate;
+    animation: glow 800ms ease-out infinite alternate;
+    background: #222922;
+    background: -webkit-linear-gradient(#333933, #222922);
+    background: -moz-linear-gradient(#333933, #222922);
+    background: -o-linear-gradient(#333933, #222922);
+    background: -ms-linear-gradient(#333933, #222922);
+    background: linear-gradient(#333933, #222922);
+    border-color: #2FA1D6;
+    box-shadow: 0 0 5px rgba(2, 255, 247, 0.20), inset 0 0 5px rgba(0, 255, 255, 0.10), 0 2px 0 #000;
+    color: #efe;
+    outline: none;
+}
+
+.searchInput:focus::-webkit-input-placeholder {
+    color: #efe;
+}
+
+.searchInput:focus:-moz-placeholder {
+    color: #efe;
+}
+.CountNum{
+    margin-left: 14px;
+}
+
+.checkDiv [type='button']{
+    margin: 0px 6px;
+}
+
+@-webkit-keyframes glow {
+    0% {
+        border-color: #2FA1D6;
+        box-shadow: 0 0 5px rgba(2, 255, 247, 0.20), inset 0 0 5px rgba(0, 255, 255, 0.10), 0 2px 0 #000;
+    }
+    100% {
+        border-color: #80ffff;
+        box-shadow: 0 0 20px rgba(2, 255, 255, 0.60), inset 0 0 10px rgba(3, 252, 255, 0.40), 0 2px 0 #000;
+    }
+}
+
+@-moz-keyframes glow {
+    0% {
+        border-color: #2FA1D6;
+        box-shadow: 0 0 5px rgba(2, 255, 247, 0.20), inset 0 0 5px rgba(0, 255, 255, 0.10), 0 2px 0 #000;
+    }
+    100% {
+        border-color: #80ffff;
+        box-shadow: 0 0 20px rgba(2, 255, 255, 0.60), inset 0 0 10px rgba(3, 252, 255, 0.40), 0 2px 0 #000;
+    }
+}
+
+@-o-keyframes glow {
+    0% {
+        border-color: #2FA1D6;
+        box-shadow: 0 0 5px rgba(2, 255, 247, 0.20), inset 0 0 5px rgba(0, 255, 255, 0.10), 0 2px 0 #000;
+    }
+    100% {
+        border-color: #80ffff;
+        box-shadow: 0 0 20px rgba(2, 255, 255, 0.60), inset 0 0 10px rgba(3, 252, 255, 0.40), 0 2px 0 #000;
+    }
+}
+
+@-ms-keyframes glow {
+    0% {
+        border-color: #2FA1D6;
+        box-shadow: 0 0 5px rgba(2, 255, 247, 0.20), inset 0 0 5px rgba(0, 255, 255, 0.10), 0 2px 0 #000;
+    }
+    100% {
+        border-color: #80ffff;
+        box-shadow: 0 0 20px rgba(2, 255, 255, 0.60), inset 0 0 10px rgba(3, 252, 255, 0.40), 0 2px 0 #000;
+    }
+}
+
+@keyframes glow {
+    0% {
+        border-color: #2FA1D6;
+        box-shadow: 0 0 5px rgba(2, 255, 247, 0.20), inset 0 0 5px rgba(0, 255, 255, 0.10), 0 2px 0 #000;
+    }
+    100% {
+        border-color: #80ffff;
+        box-shadow: 0 0 20px rgba(2, 255, 255, 0.60), inset 0 0 10px rgba(3, 252, 255, 0.40), 0 2px 0 #000;
+    }
+}
+
+
+

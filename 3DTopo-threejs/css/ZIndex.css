@@ -1,0 +1,30 @@
+/*报告弹出框*/
+.reportTip-zIndex{
+   z-index:  10000;/*自动生成最低为10000;范围为10000-11000*/
+}
+/**修复框***/
+.repair_end-zIndex{
+    z-index:9000;/*范围0*/
+}
+
+
+/**推送消息框***/
+.push_msg-zIndex{
+    z-index:20000;/*范围20000-21000*/
+}
+
+/**工具箱***/
+.optionsClass-zIndex{
+    z-index:9000;
+}
+.on-zIndex{
+    z-index:9001;
+}
+.off-zIndex{
+    z-index:9001;
+}
+
+/*播放暂停按钮*/
+.cl-effect-8-zIndex{
+    z-index:12002
+}

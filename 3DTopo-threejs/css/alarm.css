@@ -1,0 +1,93 @@
+
+.alarmBack{
+    width: 21px;
+    height: 21px;
+    background: #fff;
+    position: absolute;
+    top: 30px;
+    right: 340px;
+   border-radius: 50%;
+    -webkit-animation: alarmFrame 3s linear infinite;
+    animation: alarmFrame 3s linear infinite;
+    cursor: pointer;
+}
+.alarm {
+    text-align: center;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    position: relative;
+   /* background: rgba(243, 250, 23, 0.8);*/
+    box-shadow: 0 0 20px #fa2031;
+    /*  -webkit-transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out;*/
+    outline: 0;
+  /*  -webkit-animation: alarmFrame 1s linear infinite;
+    animation: alarmFrame 1s linear infinite;*/
+    -webkit-animation: alarmRotate 3s linear infinite;
+    animation: alarmRotate 3s linear infinite;
+}
+
+.alarm span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.alarm:hover  {
+    background: rgba(243, 250, 23, 0.8);
+    box-shadow: 0 0 20px #fa2031;;
+}
+@-webkit-keyframes alarmFrame {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        -webkit-transform:scale(1,1);
+        opacity: 1;
+    }
+    100%{
+        -webkit-transform:scale(1.5,1.5);
+        opacity: 0;
+    }
+}
+@keyframes alarmFrame {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        -webkit-transform:scale(1,1);
+        opacity: 1;
+    }
+    100%{
+        -webkit-transform:scale(1.5,1.5);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes alarmRotate {
+    0%{
+        background: rgba(243, 250, 23,0.8);
+        box-shadow: 0 0 10px #fa2031;
+    }
+    50%{
+        background: rgba(243, 250, 23,0.8);
+        box-shadow: 0 0 30px #fa2031;
+    }
+    100%{
+        background: rgba(243, 250, 23,0.8);
+        box-shadow: 0 0 10px #fa2031;
+    }
+}
+@keyframes alarmRotate {
+    0%{
+        background: rgba(243, 250, 23,0.8);
+        box-shadow: 0 0 10px #fa2031;
+    }
+    50%{
+        background: rgba(243, 250, 23,0.8);
+        box-shadow: 0 0 30px #fa2031;
+    }
+    100%{
+        background: rgba(243, 250, 23,0.8);
+        box-shadow: 0 0 10px #fa2031;
+    }
+}

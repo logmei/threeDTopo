@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="out"></div>
+<script>
+    var canvas = document.createElement("canvas");
+
+                var context = canvas.getContext('2d');
+                 var g1 = context.createLinearGradient(0, 0, 0, 300);
+
+                 g1.addColorStop(0, 'rgb(255,0,0)'); //红
+                 g1.addColorStop(0.5, 'rgb(0,255,0)');//绿
+                 g1.addColorStop(1, 'rgb(0,0,255)'); //蓝
+
+                 //可以把lg对象理解成GDI中线性brush
+                 context.fillStyle = g1;
+                 //再用这个brush来画正方形
+                 context.fillRect(0, 0, 400, 300);
+    document.getElementById("out").appendChild(canvas);
+</script>
+</body>
+</html>

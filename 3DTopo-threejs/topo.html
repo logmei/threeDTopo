@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        var TopoAddr="";
+        var manageKey="";
+    </script>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/component.css"/>
+    <link rel="stylesheet" href="css/model.css"/>
+    <link rel="stylesheet" href="css/report.css"/>
+    <link rel="stylesheet" href="css/animationCss.css"/>
+    <link rel="stylesheet" href="css/attackCss.css"/>
+    <link rel="stylesheet" href="css/ZIndex.css"/>
+    <!-- <link rel="stylesheet" href="css/language_en.css"/> --><!--英文版本-->
+    <link rel="stylesheet" href="css/language_ch.css"/><!--中文版本-->
+    <link rel="stylesheet" href="css/search.css"/>
+    <link rel="stylesheet" href="css/snmpManagerCss.css"/>
+    <link rel="stylesheet" href="css/alarm.css"/>
+
+    <script src="js/bulid/three.js"></script>
+    <script src="js/bulid/threex.dynamictexture.js"></script>
+    <script src="js/bulid/threex.dynamictext2dobject.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/tool.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/loaders/DDSLoader.js"></script>
+    <script src="js/loaders/MTLLoader.js"></script>
+    <script src="js/loaders/OBJLoader.js"></script>
+    <script type="text/javascript" src="js/controls/TrackballControls.js"></script>
+    <script src="js/CurveExtras.js"></script>
+    <script type="text/javascript" src="js/controls/OrbitControls.js"></script>
+    <script src="js/Detector.js"></script>
+    <script type="text/javascript" src="js/libs/stats.min.js"></script>
+    <script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/Detector.js"></script>
+    <script src="js/data.js" type="text/javascript"></script>
+
+    <script src="js/threeTopo.js"></script>
+    <script src="js/utils.core.js"></script>
+    <script src="js/pie.js"></script>
+    <script src="js/report.js"></script>
+    <script src="js/tool.position.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script src="js/echarts/lineRequire.js"></script>
+    <script src="js/echarts/echartRequire.js"></script>
+
+    <script src="js/snmpManager.js"></script>
+    <!--滚动条美化-->
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript">
+        var topo;
+        var search;
+        $(function($) {
+            $('.wai').niceScroll({
+                cursorcolor: "rgba(0,89,130,0.8)",//#CC0071 光标颜色
+                cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+                cursorwidth: "2px", //像素光标的宽度
+                cursorborder: "0", //     游标边框css定义
+                cursorborderradius: "5px",//以像素为光标边界半径
+                autohidemode: true, //是否隐藏滚动条
+                boxzoom:true,
+                dblclickzoom:false
+            });
+            $('.wai').getNiceScroll().hide();
+            $('.wai').getNiceScroll().show();
+            $('.wai').getNiceScroll().resize();
+            $('.resultDiv').niceScroll({
+                cursorcolor: "rgba(0,89,130,0.8)",//#CC0071 光标颜色
+                cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+                touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+                cursorwidth: "2px", //像素光标的宽度
+                cursorborder: "0", //     游标边框css定义
+                cursorborderradius: "5px",//以像素为光标边界半径
+                autohidemode: true, //是否隐藏滚动条
+                boxzoom:true,
+                dblclickzoom:false
+            });
+            $('.resultDiv').getNiceScroll().hide();
+            var h = $(window).height();
+            var w = $(window).width();
+            var options = {
+                parentId: "scene",
+                Nodes:[],
+                Links:[],
+                cameraZ:w/2,
+                centerX:w/2,
+                centerZ:h/2,
+                onlyView:false,
+                autoRotate:true
+            }
+             topo=new THREE_TOPO.TopoClass(options);
+            topo.Init();
+            point(manageKey);//画节点
+            //移动
+            Utils_Topo3D.params.autoPlay=false;
+            Utils_Topo3D.move();
+            //报告提示框
+            reportOfDevice.initSetting(topo);
+
+            //搜索
+            search=new THREE_TOPO.SearchClass();
+            search.Init();
+
+            SnmpManager_Util.Init();
+        });
+
+        function point(managekey){
+            var nodesJson="";
+            var linksJson=""
+            var h = $(window).height();
+            var w = $(window).width();
+            /**
+             * 初始化加载对象的工具
+             */
+            var onProgress = function ( xhr ) {
+                if ( xhr.lengthComputable ) {
+                    var percentComplete = xhr.loaded / xhr.total * 100;
+                    console.log( Math.round(percentComplete, 2) + '% downloaded' );
+                }
+            };
+
+            var onError = function ( xhr ) { };
+
+            THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
+            topo.planeHeight=w;
+            topo.planeWidth=h;
+            topo.LoadObj(onProgress,onError,function(){
+                topo.Nodes=nodes;
+                var obj=getCenterValue(nodes);
+                topo.centerX=obj.centerX;
+                topo.centerZ=obj.centerY;
+                topo.cameraZ=obj.cameraZ;
+                topo.reSetCameraPosition();
+               topo.PaintingNodes( function (managekey){
+                   topo.Links=links;
+                   topo.PaintingLinks();
+                   if(topo.controls.deviceContVisible){
+                       var that=topo.that;
+                       topo.PaintingDeviceCont(topo.controls.deviceTitle,that);
+                   }
+               });
+
+            },topo.that);
+
+        }
+        /**
+         * 获取中间位置的距离
+         * @param nodes
+         * @returns
+         */
+        function getCenterValue(nodes){
+            var obj=getCriticalValue(nodes);
+            var objCenter=new Object();
+            objCenter.centerX=(obj.maxX-obj.minX)/2+obj.minX;
+            objCenter.centerY=(obj.maxY-obj.minY)/2+obj.minY;
+            objCenter.cameraZ=(obj.maxX-obj.minX)>(obj.maxY-obj.minY)?(obj.maxX-obj.minX)/2+200:(obj.maxY-obj.minY)/2+200;
+            return objCenter;
+        }
+        function getCriticalValue(nodes){
+            var obj=new Object();
+            for(var i=0;i<nodes.length;i++ ){
+                var x=parseInt(nodes[i].tuoPuX);
+                var y=parseInt(nodes[i].tuoPuY);
+                if(i==0){
+                    obj.maxX=x;
+                    obj.minX=x;
+                    obj.maxY=y;
+                    obj.minY=y;
+                }else{
+                    if(x>obj.maxX)obj.maxX=x;
+                    if(x<obj.minX)obj.minX=x;
+                    if(y>obj.maxY)obj.maxY=y;
+                    if(y<obj.minY)obj.minY=y;
+                }
+            }
+            return obj;
+        }
+
+        //关闭报告框
+        function closeDiv(obj){
+            reportOfDevice.closeTip(obj);
+        }
+        //关闭修复提示框
+        function closeRepairBox(obj){
+            $(obj).parent().parent().hide('slow');
+        }
+    </script>
+    <style type="text/css">
+        .fs-container {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            bottom: 20px;
+            position: absolute;
+            x: 0;
+            y: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="searchDiv">
+   <input class="searchInput" type="text" placeholder="Search..."/><button id="search">Search</button>
+    <div class="resultList">
+        <div class="closeResultList UpAnimal"></div>
+        <div class="checkDiv"><input name="checkAll" type="checkbox"> 全选<input type="button" name="reverse" value="反选"><input name="AllReverse" type="button" value="整体反选"> <input name="cancelSelect" type="button" value="取消选择"><span class="CountNum"></span></div>
+        <div class="resultDiv" >
+            <ul class="resultUl" >
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div id="side" style="display: none">
+    Side View
+</div>
+<div id="top" style="display: none">
+    Top View
+</div>
+ <!---snmp 菜单按钮 --->
+<div class="snmpBox">
+    <div class="showSnmpRanking" style="cursor: pointer" onclick="SnmpManager_Util.ShowTip();">
+        <span> &gt;&gt;</span>
+    </div>
+    <div class="showAlarmInfo">
+
+       <div class="alarmContent">
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+           asdfasdfasdfasdf<br/>
+       </div>
+        <div class="alarmLeft" style="cursor: pointer" onclick="SnmpManager_Util.CloseTip();"><span>&lt;&lt;</span></div>
+    </div>
+</div>
+<!--报警-->
+<div class="alarmBack" onclick="SnmpManager_Util.ShowTip();">
+    <div class="alarm"><span>!</span></div>
+</div>
+<!--报警-->
+
+<!---snmp 菜单按钮 --->
+
+<div class="wai" id="scene"></div>
+<!--信息显示框-->
+<div id="tip"  style="display: none">
+    <div class="reportClass"  onclick="reportOfDevice.clickReportTool(this);">
+        <div class="cont reportClassContAnimation">
+            <!--此处为装饰-->
+            <div class="dian"></div>
+            <div class="dian"></div>
+            <div class="dian"></div>
+            <div class="dian"></div>
+            <!--END 此处为装饰-->
+
+
+            <!--弹框 header-->
+            <div class="reportTool">
+                <div class=" reportBoxClosedPosition" onclick="closeDiv(this)"><span class="close"></span></div>
+            </div>
+
+            <!--弹框左侧-->
+            <div class="reportTool_left">
+                <!--tab 选择-->
+                <ul class="tab_chose">
+                    <!--<li>
+                       <input id="tab_report_1" type="radio" checked name="report_tab">
+                       <label for="tab_report_1">设备信息</label>
+                       <section  class="tab_report_section">
+                          &lt;!&ndash;设备信息&ndash;&gt;
+                                </section>
+                             </li>-->
+
+                </ul>
+
+            </div>
+
+            <div class="reportTool_right">
+                <div id="my_pie" class="_pie" >
+                    <div class="report_title"><div class="active"></div></div>
+                    <!--报告信息-->
+                    <div id="my_pie_container" class="_pie_container" style="width: 210px;height: 190px;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="reportTool_bottom">
+                <!--cpu-->
+                <div id="my_line_cpu" class="performBox _line_cpu line_chart" >
+
+                    <div class="my_line_container" style="width:120px;height:55px;"></div>
+                    <div class="div_peroformTitle">
+                                   <span class="performTitle">
+                                          <span></span><span>0%</span>
+                                      </span>
+                    </div>
+                </div>
+
+                <div id="my_line_M" class="performBox _line_M line_chart" >
+
+                    <div class="my_line_container" style="width:120px;height:55px;"></div>
+                    <div class="div_peroformTitle">
+                                      <span class="performTitle">
+                                          <span></span><span>0%</span>
+                                      </span>
+                    </div>
+                </div>
+
+            </div>
+            <!--<div class="attackHeart heartClass">
+                &lt;!&ndash;攻击信息-&ndash;&gt;
+                             <div class="heart-shape"></div>
+                         </div>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>
